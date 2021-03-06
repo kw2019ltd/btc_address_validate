@@ -39,7 +39,7 @@ const minLength = 34;
 Address validate(String address) {
   if (address.length < minLength) {
     throw FormatException(
-        "Too short: addresses must be at least $minLength characters");
+        'Too short: addresses must be at least $minLength characters');
   }
   var prefix = address.substring(0, 2);
   if (prefix == 'bc' || prefix == 'tb') {
@@ -54,11 +54,11 @@ Address validate(String address) {
     throw Base58CheckException(e);
   }
   if (decoded.payload.length != 20) {
-    throw FormatException("Invalid Base58 payload length");
+    throw FormatException('Invalid Base58 payload length');
   }
   var version = decoded.version;
   if (!versionToType.keys.contains(version)) {
-    throw FormatException("Invalid Base58 version");
+    throw FormatException('Invalid Base58 version');
   }
   return Address(versionToType[version], versionToNetwork[version], false);
 }
@@ -72,7 +72,7 @@ Address validateSegwit(String address) {
     throw SegwitException(e);
   }
 
-  var type;
+  Type type;
   // other lengths result in a [SegwitException]
   switch (decoded.program.length) {
     case 20:
@@ -86,7 +86,7 @@ Address validateSegwit(String address) {
       }
   }
 
-  var network;
+  Network network;
   switch (prefix) {
     case 'bc':
       {
@@ -105,15 +105,17 @@ Address validateSegwit(String address) {
 class SegwitException implements Exception {
   SegwitException(this.inner);
 
-  final Exception inner;
+  final dynamic inner;
 
-  String toString() => "SegWit decoding exception: $inner";
+  @override
+  String toString() => 'SegWit decoding exception: $inner';
 }
 
 class Base58CheckException implements Exception {
   Base58CheckException(this.inner);
 
-  final Exception inner;
+  final dynamic inner;
 
-  String toString() => "Base58Check decoding exception: $inner";
+  @override
+  String toString() => 'Base58Check decoding exception: $inner';
 }
