@@ -12,12 +12,12 @@ enum Network { mainnet, testnet }
 class Address extends Equatable {
   Address(this.type, this.network, this.segwit);
 
-  final Type type;
-  final Network network;
+  final Type? type;
+  final Network? network;
   final bool segwit;
 
   @override
-  List<Object> get props => [type, network, segwit];
+  List<Object?> get props => [type, network, segwit];
 }
 
 const Map<int, Network> versionToNetwork = {
@@ -72,7 +72,7 @@ Address validateSegwit(String address) {
     throw SegwitException(e);
   }
 
-  Type type;
+  Type? type;
   // other lengths result in a [SegwitException]
   switch (decoded.program.length) {
     case 20:
@@ -86,7 +86,7 @@ Address validateSegwit(String address) {
       }
   }
 
-  Network network;
+  Network? network;
   switch (prefix) {
     case 'bc':
       {

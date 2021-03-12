@@ -1,16 +1,14 @@
 name: btc_address_validate
-version: 0.1.1
+version: 1.0.0
 description: A minimal library to validate Bitcoin mainnet and testnet addresses
-author: Dominik Spicher <dominikspicher@gmail.com>
-homepage: https://github.com/dspicher/btc_address_validate
 
 dependencies:
-    bech32: ^0.1.2
-    base58check: ^1.0.1
-    equatable: ^1.1.1
+    bech32: ^0.2.0
+    base58check: ^2.0.0
+    equatable: ^2.0.0
 
 environment:
-    sdk: ">=2.3.0 <3.0.0"
+    sdk: '>=2.12.0 <3.0.0'
 
 dev_dependencies:
     pedantic: ^1.11.0
